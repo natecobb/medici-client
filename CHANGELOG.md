@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.2 (2025-05-26)
+
+Full Changelog: [v1.0.1...v1.0.2](https://github.com/natecobb/medici-client/compare/v1.0.1...v1.0.2)
+
+### Chores
+
+* update SDK settings ([13f6211](https://github.com/natecobb/medici-client/commit/13f6211127266f94dd93e7450f653ed41a4d4785))
+
 ## 1.0.1 (2025-05-26)
 
 Full Changelog: [v1.0.0...v1.0.1](https://github.com/natecobb/medici-client/compare/v1.0.0...v1.0.1)
