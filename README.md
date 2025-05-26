@@ -15,12 +15,9 @@ The REST API documentation can be found on [www.medstarhealth.org](http://www.me
 ## Installation
 
 ```sh
-# install from the production repo
-pip install git+ssh://git@github.com/natecobb/medici-client.git
+# install from PyPI
+pip install --pre medici
 ```
-
-> [!NOTE]
-> Once this package is [published to PyPI](https://app.stainless.com/docs/guides/publish), this will become: `pip install --pre medici`
 
 ## Usage
 
