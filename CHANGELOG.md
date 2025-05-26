@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.1 (2025-05-26)
+
+Full Changelog: [v1.0.0...v1.0.1](https://github.com/natecobb/medici-client/compare/v1.0.0...v1.0.1)
+
+### Chores
+
+* **internal:** version bump ([f41bd67](https://github.com/natecobb/medici-client/commit/f41bd671436a5fd7415b8c21864200ca2b99914d))
+
 ## 1.0.0 (2025-05-26)
 
 Full Changelog: [v0.0.1-alpha.0...v1.0.0](https://github.com/natecobb/medici-client/compare/v0.0.1-alpha.0...v1.0.0)
