@@ -20,7 +20,7 @@ or products provided by Medici, please follow the respective company's security 
 
 ### Medici Terms and Policies
 
-Please contact george.pick@medstar.net for any questions or concerns regarding the security of our services.
+Please contact nathan.k.cobb@medstar.net for any questions or concerns regarding the security of our services.
 
 ---
 
