@@ -16,7 +16,7 @@ The REST API documentation can be found on [www.medstarhealth.org](http://www.me
 
 ```sh
 # install from PyPI
-pip install --pre medici
+pip install medici
 ```
 
 ## Usage
