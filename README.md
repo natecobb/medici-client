@@ -1,6 +1,6 @@
 # Medici Python API library
 
-[![PyPI version](https://img.shields.io/pypi/v/medici.svg)](https://pypi.org/project/medici/)
+[![PyPI version](https://img.shields.io/pypi/v/medici-client.svg)](https://pypi.org/project/medici-client/)
 
 The Medici Python library provides convenient access to the Medici REST API from any Python 3.8+
 application. The library includes type definitions for all request params and response fields,
@@ -16,7 +16,7 @@ The REST API documentation can be found on [www.medstarhealth.org](http://www.me
 
 ```sh
 # install from PyPI
-pip install medici
+pip install medici-client
 ```
 
 ## Usage
