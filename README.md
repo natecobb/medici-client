@@ -91,14 +91,7 @@ client = Medici()
 response = client.v1.deidentify(
     pipeline="roberta_i2b2",
     content="x",
-    config={
-        "approach": "replace",
-        "fixed_mrns": ["string"],
-        "fixed_names": ["string"],
-        "return_analysis": True,
-        "return_explanation": True,
-        "user_id": "user_id",
-    },
+    config={},
 )
 print(response.config)
 ```
