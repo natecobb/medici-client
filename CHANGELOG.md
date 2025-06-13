@@ -1,5 +1,25 @@
 # Changelog
 
+## 1.1.0 (2025-06-13)
+
+Full Changelog: [v1.0.2...v1.1.0](https://github.com/natecobb/medici-client/compare/v1.0.2...v1.1.0)
+
+### Features
+
+* **client:** add follow_redirects request option ([eb7ba84](https://github.com/natecobb/medici-client/commit/eb7ba8486afc02abfc0860ac21c1034df1680ecf))
+
+
+### Bug Fixes
+
+* **client:** correctly parse binary response | stream ([2356cd2](https://github.com/natecobb/medici-client/commit/2356cd22f2e1b6c52e18f6534ae58c5f7d3e575f))
+
+
+### Chores
+
+* **docs:** remove reference to rye shell ([1e9948b](https://github.com/natecobb/medici-client/commit/1e9948b815822e0a6bf3ce29490d95da237986b4))
+* **docs:** remove unnecessary param examples ([34d78d6](https://github.com/natecobb/medici-client/commit/34d78d65dc1de1d6cb03bfcca8302f9be6b853b9))
+* **tests:** run tests in parallel ([6fdf487](https://github.com/natecobb/medici-client/commit/6fdf487f1542f689dbba3ca3158ffd9d13fd71db))
+
 ## 1.0.2 (2025-05-26)
 
 Full Changelog: [v1.0.1...v1.0.2](https://github.com/natecobb/medici-client/compare/v1.0.1...v1.0.2)
