@@ -23,9 +23,7 @@ from pydantic import ValidationError
 
 from medici import Medici, AsyncMedici, APIResponseValidationError
 from medici._types import Omit
-from medici._utils import maybe_transform
 from medici._models import BaseModel, FinalRequestOptions
-from medici._constants import RAW_RESPONSE_HEADER
 from medici._exceptions import APIStatusError, APITimeoutError, APIResponseValidationError
 from medici._base_client import (
     DEFAULT_TIMEOUT,
@@ -35,7 +33,6 @@ from medici._base_client import (
     DefaultAsyncHttpxClient,
     make_request_options,
 )
-from medici.types.v1_deidentify_params import V1DeidentifyParams
 
 from .utils import update_env
 
@@ -722,34 +719,23 @@ class TestMedici:
 
     @mock.patch("medici._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
-    def test_retrying_timeout_errors_doesnt_leak(self, respx_mock: MockRouter) -> None:
+    def test_retrying_timeout_errors_doesnt_leak(self, respx_mock: MockRouter, client: Medici) -> None:
         respx_mock.post("/api/v1/deidentify/roberta_i2b2").mock(
             side_effect=httpx.TimeoutException("Test timeout error")
         )
 
         with pytest.raises(APITimeoutError):
-            self.client.post(
-                "/api/v1/deidentify/roberta_i2b2",
-                body=cast(object, maybe_transform(dict(content="x"), V1DeidentifyParams)),
-                cast_to=httpx.Response,
-                options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
-            )
+            client.v1.with_streaming_response.deidentify(pipeline="roberta_i2b2", content="x").__enter__()
 
         assert _get_open_connections(self.client) == 0
 
     @mock.patch("medici._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
-    def test_retrying_status_errors_doesnt_leak(self, respx_mock: MockRouter) -> None:
+    def test_retrying_status_errors_doesnt_leak(self, respx_mock: MockRouter, client: Medici) -> None:
         respx_mock.post("/api/v1/deidentify/roberta_i2b2").mock(return_value=httpx.Response(500))
 
         with pytest.raises(APIStatusError):
-            self.client.post(
-                "/api/v1/deidentify/roberta_i2b2",
-                body=cast(object, maybe_transform(dict(content="x"), V1DeidentifyParams)),
-                cast_to=httpx.Response,
-                options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
-            )
-
+            client.v1.with_streaming_response.deidentify(pipeline="roberta_i2b2", content="x").__enter__()
         assert _get_open_connections(self.client) == 0
 
     @pytest.mark.parametrize("failures_before_success", [0, 2, 4])
@@ -1562,34 +1548,23 @@ class TestAsyncMedici:
 
     @mock.patch("medici._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
-    async def test_retrying_timeout_errors_doesnt_leak(self, respx_mock: MockRouter) -> None:
+    async def test_retrying_timeout_errors_doesnt_leak(self, respx_mock: MockRouter, async_client: AsyncMedici) -> None:
         respx_mock.post("/api/v1/deidentify/roberta_i2b2").mock(
             side_effect=httpx.TimeoutException("Test timeout error")
         )
 
         with pytest.raises(APITimeoutError):
-            await self.client.post(
-                "/api/v1/deidentify/roberta_i2b2",
-                body=cast(object, maybe_transform(dict(content="x"), V1DeidentifyParams)),
-                cast_to=httpx.Response,
-                options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
-            )
+            await async_client.v1.with_streaming_response.deidentify(pipeline="roberta_i2b2", content="x").__aenter__()
 
         assert _get_open_connections(self.client) == 0
 
     @mock.patch("medici._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
-    async def test_retrying_status_errors_doesnt_leak(self, respx_mock: MockRouter) -> None:
+    async def test_retrying_status_errors_doesnt_leak(self, respx_mock: MockRouter, async_client: AsyncMedici) -> None:
         respx_mock.post("/api/v1/deidentify/roberta_i2b2").mock(return_value=httpx.Response(500))
 
         with pytest.raises(APIStatusError):
-            await self.client.post(
-                "/api/v1/deidentify/roberta_i2b2",
-                body=cast(object, maybe_transform(dict(content="x"), V1DeidentifyParams)),
-                cast_to=httpx.Response,
-                options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
-            )
-
+            await async_client.v1.with_streaming_response.deidentify(pipeline="roberta_i2b2", content="x").__aenter__()
         assert _get_open_connections(self.client) == 0
 
     @pytest.mark.parametrize("failures_before_success", [0, 2, 4])
