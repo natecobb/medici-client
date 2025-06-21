@@ -1,6 +1,6 @@
 # Medici Python API library
 
-[![PyPI version](https://img.shields.io/pypi/v/medici-client.svg)](https://pypi.org/project/medici-client/)
+[![PyPI version](<https://img.shields.io/pypi/v/medici-client.svg?label=pypi%20(stable)>)](https://pypi.org/project/medici-client/)
 
 The Medici Python library provides convenient access to the Medici REST API from any Python 3.8+
 application. The library includes type definitions for all request params and response fields,
@@ -70,6 +70,41 @@ asyncio.run(main())
 
 Functionality between the synchronous and asynchronous clients is otherwise identical.
 
+### With aiohttp
+
+By default, the async client uses `httpx` for HTTP requests. However, for improved concurrency performance you may also use `aiohttp` as the HTTP backend.
+
+You can enable this by installing `aiohttp`:
+
+```sh
+# install from PyPI
+pip install medici-client[aiohttp]
+```
+
+Then you can enable it by instantiating the client with `http_client=DefaultAioHttpClient()`:
+
+```python
+import os
+import asyncio
+from medici import DefaultAioHttpClient
+from medici import AsyncMedici
+
+
+async def main() -> None:
+    async with AsyncMedici(
+        api_key=os.environ.get("MEDICI_API_KEY"),  # This is the default and can be omitted
+        http_client=DefaultAioHttpClient(),
+    ) as client:
+        response = await client.v1.deidentify(
+            pipeline="roberta_i2b2",
+            content="x",
+        )
+        print(response.config)
+
+
+asyncio.run(main())
+```
+
 ## Using types
 
 Nested request parameters are [TypedDicts](https://docs.python.org/3/library/typing.html#typing.TypedDict). Responses are [Pydantic models](https://docs.pydantic.dev) which also provide helper methods for things like:
@@ -91,14 +126,7 @@ client = Medici()
 response = client.v1.deidentify(
     pipeline="roberta_i2b2",
     content="x",
-    config={
-        "approach": "replace",
-        "fixed_mrns": ["string"],
-        "fixed_names": ["string"],
-        "return_analysis": True,
-        "return_explanation": True,
-        "user_id": "user_id",
-    },
+    config={},
 )
 print(response.config)
 ```
@@ -174,7 +202,7 @@ client.with_options(max_retries=5).v1.deidentify(
 ### Timeouts
 
 By default requests time out after 1 minute. You can configure this with a `timeout` option,
-which accepts a float or an [`httpx.Timeout`](https://www.python-httpx.org/advanced/#fine-tuning-the-configuration) object:
+which accepts a float or an [`httpx.Timeout`](https://www.python-httpx.org/advanced/timeouts/#fine-tuning-the-configuration) object:
 
 ```python
 from medici import Medici
