@@ -1,4 +1,4 @@
 configured_endpoints: 2
 openapi_spec_url: https://storage.googleapis.com/stainless-sdk-openapi-specs/medstar-health%2Fmedici-6d683783064f70e6a9942db39e790815350b230d5ff27f47882b2b76e88feaf9.yml
 openapi_spec_hash: 08317d5830daebbfac8fcad56f30284c
-config_hash: db1f377477322ffafa06ee9c374cdf05
+config_hash: 6cd880b5e1caf4f5dcf2cc30c49d1cc5
