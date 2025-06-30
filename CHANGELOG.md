@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.1.1 (2025-06-30)
+
+Full Changelog: [v1.1.0...v1.1.1](https://github.com/natecobb/medici-client/compare/v1.1.0...v1.1.1)
+
+### Bug Fixes
+
+* **ci:** correct conditional ([2a9f029](https://github.com/natecobb/medici-client/commit/2a9f029c53afa5eb03b0e2e0a0b45954f51ecb77))
+
 ## 1.1.0 (2025-06-29)
 
 Full Changelog: [v1.0.2...v1.1.0](https://github.com/natecobb/medici-client/compare/v1.0.2...v1.1.0)
